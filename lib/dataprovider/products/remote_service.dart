@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../core/helper/data_state.dart';
+import '../../../core/helper/data_state.dart';
 import '../models/product.dart';
 
 class ProductDataSource {
