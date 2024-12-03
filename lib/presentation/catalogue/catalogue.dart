@@ -70,20 +70,51 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
           if (state is ProductLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is ProductLoaded) {
-            return GridView.builder(
-              controller: _scrollController,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.63,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 10,
-              ),
-              itemCount: state.products.length,
-              itemBuilder: (context, index) {
-                final product = state.products[index];
-                return ProductCard(product: product);
-              },
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    onChanged: (value) {
+                      if (value.isEmpty) {
+                        context
+                            .read<ProductBloc>()
+                            .add(FetchProducts(page: currentPage, limit: 10));
+                      } else {
+                        context
+                            .read<ProductBloc>()
+                            .add(FetchSearchItems(value));
+                      }
+                    },
+                    decoration: const InputDecoration(
+                        labelText: "Search",
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder()),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    controller: _scrollController,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.63,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: state.products.length,
+                    itemBuilder: (context, index) {
+                      final product = state.products[index];
+                      return ProductCard(product: product);
+                    },
+                  ),
+                ),
+              ],
             );
           } else if (state is ProductError) {
             return Center(

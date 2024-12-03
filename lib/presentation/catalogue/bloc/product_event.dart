@@ -20,3 +20,8 @@ final class LoadMoreProducts extends ProductEvent {
 
   const LoadMoreProducts({required this.page, required this.limit});
 }
+
+final class FetchSearchItems extends ProductEvent {
+  final String query;
+  const FetchSearchItems(this.query);
+}

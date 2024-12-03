@@ -28,4 +28,28 @@ class ProductDataSource {
       );
     }
   }
+
+  Future<DataState<List<Product>, InternetError>> getSearchProducts(
+      String query) async {
+    try {
+      final response =
+          await http.get(Uri.parse('https://dummyjson.com/products?q=$query'));
+      print(query);
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body)['products'] as List;
+        final products = data.map((e) => Product.fromJson(e)).toList();
+        return DataSuccess(data: products);
+      } else {
+        return DataFailed(
+          error: InternetError(errorMsg: 'Failed to fetch products from API.'),
+        );
+      }
+    } catch (e) {
+      return DataFailed(
+        error: InternetError(
+            errorMsg: 'Failed to fetch products from API.', error: e),
+      );
+    }
+  }
 }

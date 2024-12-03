@@ -43,5 +43,23 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         }
       }
     });
+    on<FetchSearchItems>((event, emit) async {
+      // emit(ProductLoading());
+
+      // final dataState = await _productDataSource.getSearchProducts(event.query);
+
+      // if (dataState is DataSuccess) {
+      //   emit(ProductLoaded(products: dataState.data!));
+      // } else {
+      //   emit(ProductError(message: dataState.error.toString()));
+      // }
+      if (state is ProductLoaded) {
+        final current = state as ProductLoaded;
+        final filtrproducts = current.products
+            .where((product) => product.title!.contains(event.query))
+            .toList();
+        emit(ProductLoaded(products: filtrproducts));
+      }
+    });
   }
 }
