@@ -2,6 +2,7 @@ Shopping Cart App
 A simple and efficient shopping cart application built using Flutter. This app allows users to add, remove, and update items in their shopping cart while maintaining a smooth and responsive user experience.
 
 ##Screenshots
+
 ![Screenshot 2024-12-03 161457](https://github.com/user-attachments/assets/f7eea80d-d698-4ad9-94ab-0ab5ba9e0686)
 ![Screenshot 2024-12-03 161544](https://github.com/user-attachments/assets/386b6f86-569b-4147-83cb-2879e7f94055)
 
