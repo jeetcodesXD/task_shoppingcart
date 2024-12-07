@@ -5,7 +5,7 @@ class Product {
   final double price;
   final double discountPercentage;
   final String? thumbnail;
-  final int quantity;
+  final int? quantity;
 
   Product({
     required this.id,
@@ -30,6 +30,19 @@ class Product {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'brand': brand,
+      'thumbnail': thumbnail,
+      'price': price,
+      'discountedPrice': discountedPrice,
+      'quantity': quantity,
+      'discountPercentage': discountPercentage,
+    };
+  }
+
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       id: json['id'],
@@ -37,6 +50,7 @@ class Product {
       brand: json['brand'],
       price: json['price'].toDouble(),
       discountPercentage: json['discountPercentage'].toDouble(),
+      quantity: json['quantity'],
       thumbnail: json['thumbnail'],
     );
   }

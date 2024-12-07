@@ -182,7 +182,7 @@ class CartItemCard extends StatelessWidget {
                         context.read<CartBloc>().add(
                               UpdateCartQuantity(
                                 productId: cartItem.id,
-                                newQuantity: cartItem.quantity - 1,
+                                newQuantity: cartItem.quantity! - 1,
                               ),
                             );
                       },
@@ -204,7 +204,7 @@ class CartItemCard extends StatelessWidget {
                         context.read<CartBloc>().add(
                               UpdateCartQuantity(
                                 productId: cartItem.id,
-                                newQuantity: cartItem.quantity + 1,
+                                newQuantity: cartItem.quantity! + 1,
                               ),
                             );
                       },
