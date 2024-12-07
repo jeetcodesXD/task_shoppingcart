@@ -17,6 +17,7 @@ A simple and efficient shopping cart application built using Flutter. This app a
 - **Total Price**: View the total price of the items in the cart, automatically updated as items are added or removed.
 - **Persistence**: The app can persist cart data, ensuring that users don't lose their cart state when navigating between screens.
 - **Responsive UI**: The app is designed to work well on different screen sizes, ensuring a good experience on both phones and tablets.
+- **Data Storage with Shared Preferences**: The app uses shared preferences to store cart items locally, ensuring that the cart state is saved even when the app is closed and reopened.
 
 ## BLoC Architecture
 
